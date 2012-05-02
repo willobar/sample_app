@@ -12,6 +12,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :development do
+	gem "annotate", "~> 2.4.1.beta1"
+end
+
 group :test do
   gem 'capybara'
 end
@@ -24,7 +28,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platform => :ruby
+  #gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
