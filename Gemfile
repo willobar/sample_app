@@ -7,6 +7,9 @@ gem 'rails', '3.2.3'
 
 gem 'pg'
 gem 'bootstrap-sass'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
