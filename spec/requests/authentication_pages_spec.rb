@@ -19,6 +19,9 @@ describe "Authentication Pages" do
 
 			it { should have_selector('h1', text: 'Sign in') }
 		  it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+		  it { should_not have_link('Profile') }
+		  it { should_not have_link('Settings') }
+		  it { should_not have_link('Users') }
 
 		  describe "after visiting another page" do
 		    before { click_link 'Home' }
