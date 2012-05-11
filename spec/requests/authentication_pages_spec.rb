@@ -64,6 +64,19 @@ describe "Authentication Pages" do
       	describe "after signing in" do
       	  it { should have_selector('title', text: 'Edit user') }
       	end
+
+      	describe "when signing in again" do
+          before do
+            visit signin_path
+            fill_in "Email",    with: user.email
+            fill_in "Password", with: user.password
+            click_button "Sign in"
+          end
+
+          it "should render the default (profile) page" do
+            page.should have_selector('title', text: user.name) 
+          end
+        end
 	    end
 
 	    describe "in the Users controller" do
@@ -83,6 +96,24 @@ describe "Authentication Pages" do
 	        it { should have_selector('title', text: "Sign in")}
 	      end
 	    end
+	  end
+
+	  describe "as a signed-in user" do
+	  	let(:user) { FactoryGirl.create(:user) }
+	  	before { sign_in user }
+
+	  	describe "in the Users controller" do
+	  	  
+	  	 	describe "submitting to the new action" do
+		      before { visit new_user_path }
+		      it { should_not have_selector('title', text: 'Sign up') }
+	    	end
+
+	    	describe "submitting to the create action" do
+	    	  before { post users_path(user) }
+	    	  specify { response.should redirect_to(root_path) }
+	    	end
+	  	end
 	  end
 
 	  describe "as wrong user" do
